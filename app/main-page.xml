@@ -27,7 +27,7 @@ https://docs.nativescript.org/ui/components.
     -->
     <StackLayout class="p-20">
 
-        <dd:DropDown items="{{ timerMinutes }}" row="0" colSpan="2" selectedIndex="{{ timerValue }}" />
+        <dd:DropDown items="{{ timerMinutes }}" row="0" colSpan="2" selectedIndex="{{ timerValue }}" hint="Select Minutes..." />
 
 
         <Label text="{{ message }}" class="h2 text-center" textWrap="true"/>

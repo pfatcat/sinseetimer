@@ -25,7 +25,6 @@ function createViewModel() {
         var timerValue = viewModel.timerMinutes.getValue(index);
 
         countDown = new Date("1/1/2018 00:" + timerValue + ":01")
-        minutes = countDown.getMinutes();
         clock = setInterval(decrementTimer, 1000);
     }
 
@@ -54,8 +53,10 @@ function onLoad(viewModel)
     var itemsSource = new ValueList(items);
 
     viewModel.set("timerMinutes", itemsSource);
+    viewModel.timerValue = 2; //default to 15 minutes
 }
 
+//https://github.com/PeterStaev/NativeScript-Drop-Down/issues/2
 var ValueList = (function () {
     function ValueList(array) {
         this._array = array;
