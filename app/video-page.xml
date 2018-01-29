@@ -1,0 +1,13 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page" >
+
+    <Page.actionBar>
+        <ActionBar title="Sin See Center Timer" class="action-bar">
+
+        </ActionBar>
+    </Page.actionBar>
+
+    <StackLayout>
+
+        <Label text="Videos and stuff" class="h2 text-center" textWrap="true"/>
+    </StackLayout>
+</Page>

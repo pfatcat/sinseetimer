@@ -11,8 +11,16 @@ https://docs.nativescript.org/ui/components.
     http://docs.nativescript.org/ui/action-bar
     -->
     <Page.actionBar>
-        <ActionBar title="Sin See Timer" icon="" class="action-bar">
-        </ActionBar>
+        <ActionBar title="Sin See Center Timer" class="action-bar">
+            <android>
+                <!--<NavigationButton icon="res://ic_menu" tap="showSlideout" />-->
+                 <Button  text="&#xf0c9;" android.position="left" class="font-awesome" tap="{{ doTheThing }}" 
+                    style="background-color: #70b85d; color: #000000;" />
+            </android>
+            <ios>
+                <ActionItem icon="res://ic_menu" ios.position="left" tap="showSideDrawer" />
+            </ios>-->
+            </ActionBar>
     </Page.actionBar>
     <!--
     The StackLayout stacks UI components on the screen—either vertically or horizontally.
@@ -27,12 +35,11 @@ https://docs.nativescript.org/ui/components.
     -->
     <StackLayout class="p-20">
 
-        <dd:DropDown items="{{ timerMinutes }}" row="0" colSpan="2" selectedIndex="{{ timerValue }}" hint="Select Minutes..." />
-
+        <dd:DropDown class="dropDown" items="{{ timerMinutes }}" row="0" colSpan="2" selectedIndex="{{ timerValue }}" hint="Select Minutes..." />
 
         <Label text="{{ message }}" class="h2 text-center" textWrap="true"/>
         <!--<Label text="Tap to start the timer" class="h1 text-center"/> -->
-        <Button text="Start Timer" tap="{{ onTap }}" class="btn btn-primary btn-active"/>
+        <Button text="Start Timer" tap="{{ onTap }}" class="btn btn-primary btn-active btn-rounded-lg"/>
         
     </StackLayout>
 </Page>

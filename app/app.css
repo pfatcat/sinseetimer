@@ -11,11 +11,35 @@ refer to http://docs.nativescript.org/ui/theme.
 The imported CSS rules must precede all other types of rules.
 */
 @import '~nativescript-theme-core/css/core.light.css';
+@import '~/sinseecenter.css';
 
 /*
 The following CSS rule changes the font size of all UI
 components that have the btn class name.
-*/
+
 .btn {
     font-size: 18;
 }
+
+.action-bar{
+    background-color: rgb(74, 184, 93);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
+}
+
+.page {
+
+    background-color: rgb(0, 0, 0);
+}
+
+ActionBar {
+    background-color: rgb(74, 184, 93);
+    color: rgb(182, 16, 16);
+    font-size: 36;
+}
+
+DropDown{
+    font-size: 28;
+    color: white;
+}
+*/

@@ -1,4 +1,5 @@
-(function () {
+//https://github.com/PeterStaev/NativeScript-Drop-Down/issues/2
+var ValueList = (function () {
     function ValueList(array) {
         this._array = array;
     }
@@ -35,3 +36,5 @@
     };
     return ValueList;
 })();
+
+module.exports = ValueList;

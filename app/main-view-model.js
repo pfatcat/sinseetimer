@@ -1,11 +1,15 @@
 var Observable = require("data/observable").Observable;
-var ObservableArray = require("data/observable-array").ObservableArray;
-// var ValueList = require("nativescript-drop-down").ValueList;
+var sound = require("nativescript-sound");
+var bell = sound.create("~/media/bell.mp3"); // preload the audio file
+const ValueList = require("~/valuelist.js");
+const frameModule = require("ui/frame");
 
 function createViewModel() {
     var viewModel = new Observable();
     var countDown;
     var clock;
+
+    const topmost = frameModule.topmost();
 
     onLoad(viewModel);
 
@@ -13,16 +17,24 @@ function createViewModel() {
         countDown.setSeconds(countDown.getSeconds() - 1);
         viewModel.set("message", formatTime());
 
+        //TODO: add warning sound to let user know when meditation is almost over
+
         if(countDown <= new Date("1/1/2018 00:00:00")){
             clearInterval(clock);
+            bell.play(); //play end of meditation bell
             viewModel.set("message", "Done");
         }
     }
+
     var startTimer = function() {
+
+        //TODO: add warmup countdown, then play start bell
+        clearInterval(clock);
+
         var timerValue = viewModel.get("timerValue");
 
         var index = viewModel.timerValue;
-        var timerValue = viewModel.timerMinutes.getValue(index);
+        var timerValue = 1; //viewModel.timerMinutes.getValue(index);
 
         countDown = new Date("1/1/2018 00:" + timerValue + ":01")
         clock = setInterval(decrementTimer, 1000);
@@ -36,6 +48,12 @@ function createViewModel() {
     viewModel.onTap = function() {
         startTimer();        
     }
+
+    viewModel.doTheThing = function (eventData) {
+        // console.log("Thing is done!");
+        // console.dir(eventData);
+        topmost.navigate("video-page");
+      };
 
     return viewModel;
 }
@@ -55,42 +73,3 @@ function onLoad(viewModel)
     viewModel.set("timerMinutes", itemsSource);
     viewModel.timerValue = 2; //default to 15 minutes
 }
-
-//https://github.com/PeterStaev/NativeScript-Drop-Down/issues/2
-var ValueList = (function () {
-    function ValueList(array) {
-        this._array = array;
-    }
-    Object.defineProperty(ValueList.prototype, "length", {
-        get: function () { return this._array.length; },
-        enumerable: true,
-        configurable: true
-    });
-    ValueList.prototype.getItem = function (index) {
-        return this.getText(index);
-    };
-    ValueList.prototype.getText = function (index) {
-        if (index < 0
-            || index >= this._array.length) {
-            return "";
-        }
-        return this._array[index].DisplayMember;
-    };
-    ValueList.prototype.getValue = function (index) {
-        if (index < 0
-            || index >= this._array.length) {
-            return null;
-        }
-        return this._array[index].ValueMember;
-    };
-    ValueList.prototype.getIndex = function (value) {
-        var loop;
-        for (loop = 0; loop < this._array.length; loop++) {
-            if (this.getValue(loop) == value) {
-                return loop;
-            }
-        }
-        return -1;
-    };
-    return ValueList;
-})();
